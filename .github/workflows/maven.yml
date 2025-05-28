@@ -1,0 +1,42 @@
+name: Run Selenium Grid Java Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Start Selenium Grid
+        run: |
+          docker-compose up -d
+          sleep 15
+
+      - name: Run Maven Tests
+        run: mvn clean test
+
+      - name: Stop Selenium Grid
+        if: always()
+        run: docker-compose down
+
+      - name: Upload Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: reports
+          path: |
+            target/surefire-reports
+            target/extent-report.html
+            target/*.png
