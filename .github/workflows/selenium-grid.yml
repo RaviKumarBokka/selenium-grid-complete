@@ -2,7 +2,7 @@ name: Run Selenium Grid Java Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
 
 jobs:
