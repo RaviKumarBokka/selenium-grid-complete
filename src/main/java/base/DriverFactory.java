@@ -11,9 +11,9 @@ public class DriverFactory {
 
     public static WebDriver initDriver(String browser, String baseUrl) throws Exception {
         ChromeOptions options = new ChromeOptions();
-        driver.set(new ChromeDriver());
-        //options.addArguments("--remote-allow-origins=*");
-       // driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options));
+       // driver.set(new ChromeDriver());
+        options.addArguments("--remote-allow-origins=*");
+        driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options));
         getDriver().get(baseUrl);
         return getDriver();
     }

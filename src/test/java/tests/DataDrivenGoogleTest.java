@@ -22,8 +22,7 @@ public class DataDrivenGoogleTest {
     @Parameters({"env"})
     public void setUpSuite(@Optional("dev") String env) throws Exception {
         baseUrl = PropertyUtil.getEnvUrl(env);
-        @SuppressWarnings("deprecation")
-		ExtentHtmlReporter reporter = new ExtentHtmlReporter("target/extent-data-report.html");
+        ExtentHtmlReporter reporter = new ExtentHtmlReporter("target/extent-data-report.html");
         extent = new ExtentReports();
         extent.attachReporter(reporter);
     }
