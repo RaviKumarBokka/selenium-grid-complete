@@ -21,7 +21,7 @@ jobs:
 
       - name: Start Selenium Grid
         run: |
-          docker-compose up -d
+          docker compose up -d
           sleep 15
 
       - name: Run Maven Tests
